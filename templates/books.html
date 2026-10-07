@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Books | {{ site.title }}{% endblock %}
+
+{# A macro local to this page: one book in a list. #}
+{% macro book_item(book) %}
+<li class="book">
+  <span class="book-title"><i>{{ book.title }}</i></span>
+  <span class="book-author">{{ book.author }}</span>
+  <span class="meta">
+    {% if book.translator %}<span>trans. {{ book.translator }}</span>{% endif %}
+    {% if book.language %}<span>read in {{ book.language }}</span>{% endif %}
+    {% if book.rating %}<span class="stars" aria-label="{{ book.rating }} out of 5">{{ book.rating | stars }}</span>{% endif %}
+  </span>
+  {% if book.note %}<p class="book-note">{{ book.note }}</p>{% endif %}
+  {% if book.review_url %}<a class="more" href="{{ book.review_url | link }}">Read my review</a>{% endif %}
+</li>
+{% endmacro %}
+
+{% block content %}
+<header class="page-head">
+  <h1>{{ site.sections.books.title }}</h1>
+  <p class="lede">{{ site.sections.books.intro }}</p>
+</header>
+
+{% if reading %}
+<section>
+  <h2 class="section-label">Currently reading</h2>
+  <ul class="book-list">{% for book in reading %}{{ book_item(book) }}{% endfor %}</ul>
+</section>
+{% endif %}
+
+{% for year in years %}
+<section>
+  <h2 class="section-label">Finished in {{ year }} <span class="count">{{ finished[year] | length }}</span></h2>
+  <ul class="book-list">{% for book in finished[year] %}{{ book_item(book) }}{% endfor %}</ul>
+</section>
+{% endfor %}
+
+{% if to_read %}
+<section>
+  <h2 class="section-label">On the shelf</h2>
+  <ul class="book-list">{% for book in to_read %}{{ book_item(book) }}{% endfor %}</ul>
+</section>
+{% endif %}
+
+{% if not total %}<p class="empty">No books listed yet.</p>{% endif %}
+{% endblock %}

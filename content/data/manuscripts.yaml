@@ -1,0 +1,137 @@
+# manuscripts.yaml: the manuscript collection. Shown in this order, so put
+# new additions at the top if you want them first on the homepage.
+#
+# Fields:
+#   id            required. Short, unique, lowercase-with-hyphens; becomes the URL
+#   title         required
+#   script        required. Must match an `id` in scripts.yaml
+#   century       a number, used for filtering (e.g. 9 for the 9th century)
+#   date          free text, e.g. "c. 568–645 CE (radiocarbon)"
+#   place         where it was made
+#   maker         scribe, calligrapher, or illuminator
+#   material      e.g. "Ink on parchment"
+#   size          e.g. "22.4 × 13.3 cm"
+#   institution   where it is held today
+#   shelfmark     the institution's catalogue number
+#   source        public-domain or own-photo
+#   credit        the credit line for the image
+#   link          a page about it (institution or Wikimedia Commons)
+#   images        a list of { src, caption }. src is either
+#                   - a web address (https://...), or
+#                   - a file you saved in static/images/, e.g. manuscripts/my-photo.jpg
+#   description   longer text in Markdown
+#
+# The image links below use Wikimedia Commons' "Special:FilePath" address,
+# which forwards to the current file. Open each `link` once in your browser to
+# confirm the image and its licence; the site shows a placeholder if one
+# fails to load.
+
+- id: birmingham-quran
+  title: "The Birmingham Qur'an"
+  script: hijazi
+  century: 7
+  date: "Parchment radiocarbon dated to c. 568–645 CE"
+  place: "Arabia, probably the Hijaz"
+  material: "Ink on parchment"
+  institution: "Cadbury Research Library, University of Birmingham"
+  shelfmark: "Mingana Islamic Arabic 1572a"
+  source: public-domain
+  credit: "Cadbury Research Library, University of Birmingham, via Wikimedia Commons"
+  link: "https://commons.wikimedia.org/wiki/File:Birmingham_Quran_manuscript.jpg"
+  images:
+    - src: "https://commons.wikimedia.org/wiki/Special:FilePath/Birmingham_Quran_manuscript.jpg?width=1200"
+      caption: "Two leaves of the Birmingham Qur'an in Hijazi script"
+  description: |
+    Two parchment leaves containing parts of Suras 18 to 20, held in the
+    Mingana Collection. In 2015 radiocarbon testing at the University of
+    Oxford dated the parchment to between 568 and 645 CE, placing it among
+    the oldest surviving Qur'an fragments.
+
+    The date applies to the animal skin rather than the writing, which could
+    be somewhat later, but the script and layout fit the earliest period.
+
+- id: blue-quran-folio
+  title: "A folio from the Blue Qur'an"
+  script: kufic
+  century: 9
+  date: "Second half of the 9th to mid-10th century"
+  place: "Tunisia, possibly Qairawan"
+  material: "Gold and silver on indigo-dyed parchment"
+  institution: "The Metropolitan Museum of Art, New York"
+  shelfmark: "2004.88"
+  source: public-domain
+  credit: "The Metropolitan Museum of Art, Purchase, Lila Acheson Wallace Gift, 2004 (Open Access)"
+  link: "https://commons.wikimedia.org/wiki/File:Folio_Blue_Quran_Met_2004.88.jpg"
+  images:
+    - src: "https://commons.wikimedia.org/wiki/Special:FilePath/Folio_Blue_Quran_Met_2004.88.jpg?width=1200"
+      caption: "Gold Kufic letters on indigo-dyed parchment"
+  description: |
+    One of the most celebrated Qur'ans ever made: gold letters on parchment
+    dyed deep blue, with verse markers once in silver, now darkened. The
+    manuscript was broken up long ago, and its leaves are scattered between
+    Tunisia and collections around the world.
+
+    Where it was made is still debated. A North African origin, probably
+    Qairawan, is the most common view; others have argued for Abbasid
+    Baghdad or Fatimid patronage.
+
+- id: ibn-al-bawwab-quran
+  title: "The Qur'an of Ibn al-Bawwab"
+  script: naskh
+  century: 11
+  date: "391 AH / 1000–1001 CE"
+  place: "Baghdad"
+  maker: "Ibn al-Bawwab (d. 1022)"
+  material: "Ink, gold, and colours on paper"
+  institution: "Chester Beatty Library, Dublin"
+  shelfmark: "CBL Is 1431"
+  description: |
+    Copied and signed in Baghdad by Ibn al-Bawwab, the most admired
+    calligrapher of his age. It is the earliest dated Qur'an to survive in a
+    rounded, proportioned script, and marks the shift from Kufic to the
+    cursive hands that took over book copying.
+
+    No image yet: the Chester Beatty Library publishes images of this
+    manuscript online; check their licence terms before adding one here.
+
+- id: maghribi-quran-folio
+  title: "A Maghribi Qur'an folio, Sura al-Ma'ida"
+  script: maghribi
+  century: 13
+  date: "13th century"
+  place: "Southern Spain or North Africa"
+  institution: "Freer Gallery of Art, Smithsonian Institution"
+  shelfmark: "F1929.69"
+  source: public-domain
+  credit: "Freer Gallery of Art, Purchase, Charles Lang Freer Endowment"
+  link: "https://commons.wikimedia.org/wiki/File:Maghribi_script_sura_5.jpg"
+  images:
+    - src: "https://commons.wikimedia.org/wiki/Special:FilePath/Maghribi_script_sura_5.jpg"
+      caption: "Verses of Sura 5 in Maghribi script"
+  description: |
+    A leaf from a Qur'an in the Maghribi script of the Islamic West, with the
+    round letters and long sweeping tails typical of the hand. Look for the
+    western dotting: a single dot below for fa and a single dot above for qaf.
+
+- id: mir-ali-haravi-calligraphy
+  title: "Calligraphy in Nasta'liq by Mir 'Ali Haravi"
+  script: nastaliq
+  century: 16
+  date: "16th century"
+  place: "Herat"
+  maker: "Mir 'Ali Haravi"
+  material: "Ink, opaque watercolour, and gold on paper"
+  size: "22.4 × 13.3 cm"
+  institution: "Brooklyn Museum"
+  shelfmark: "X629.6"
+  source: public-domain
+  credit: "Brooklyn Museum Collection (no known copyright restrictions)"
+  link: "https://commons.wikimedia.org/wiki/File:Brooklyn_Museum_-_Sample_of_Calligraphy_in_Persian_Nasta%27liq_Script.jpg"
+  images:
+    - src: "https://commons.wikimedia.org/wiki/Special:FilePath/Brooklyn_Museum_-_Sample_of_Calligraphy_in_Persian_Nasta%27liq_Script.jpg?width=1200"
+      caption: "Persian verses in Nasta'liq, signed by Mir 'Ali"
+  description: |
+    A calligraphy specimen by Mir 'Ali Haravi, one of the great masters of
+    Nasta'liq, who worked in Herat and later Bukhara. Single sheets like this
+    were made to be collected and mounted in albums, valued for the hand
+    itself as much as for the verses.

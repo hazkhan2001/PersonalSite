@@ -1,0 +1,28 @@
+# languages.yaml: shown on the About page, grouped by `group`.
+#
+# Fields:
+#   name, level   required
+#   group         heading to file it under, e.g. "Languages" or "Technical"
+#   script        the writing system, if useful
+#   note          a short note (optional)
+#
+# Check these and add the rest.
+
+- name: "English"
+  level: "Native"
+  group: "Languages"
+
+- name: "Urdu"
+  level: "Working knowledge"
+  script: "Nasta'liq"
+  group: "Languages"
+
+- name: "Persian (Dari)"
+  level: "Working knowledge"
+  script: "Nasta'liq / Naskh"
+  group: "Languages"
+
+- name: "Python"
+  level: "Learning"
+  group: "Technical"
+  note: "Data pipelines, analysis, and this site."

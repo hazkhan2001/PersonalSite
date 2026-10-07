@@ -1,0 +1,101 @@
+# images.yaml: every image in the Images section. Order doesn't matter;
+# each collection is sorted by `year`, oldest first.
+#
+# Fields:
+#   id          required. Unique, lowercase-with-hyphens; becomes the URL
+#   title       required
+#   collection  required. Must match an `id` in image_collections.yaml
+#   year        a whole number, used for sorting (use -500 for 500 BCE)
+#   date        the date in words, e.g. "1884–1885" or "c. 1650"
+#   place       where it was made or what it shows
+#   creator     photographer, painter, or engraver
+#   medium      e.g. Photograph, Painting, Engraving, Tile, Map
+#   src         the image: a web address, or a file in static/images/
+#               (e.g. images/kaaba-1880.jpg)
+#   source      public-domain, licensed, own-photo, or copyrighted
+#   licence     the exact licence, if any (e.g. "CC BY-SA 4.0")
+#   credit      the credit line shown under the image
+#   link        the page where the image lives (museum, library, Commons)
+#   sensitive   true, or a short content note, for images of violence or death.
+#               The image is blurred until the visitor chooses to see it.
+#   context     what the image shows and how it came to be made, in Markdown
+#   note        your own review or note on it, in Markdown
+#
+# On copyright: old works (roughly pre-1930), US government photographs, and
+# openly licensed images can be shown with a credit. Many famous 20th-century
+# press photographs are still in copyright, and a credit line alone doesn't
+# give permission to republish them. For those, set `source: copyrighted`,
+# leave out `src`, and put the image's page in `link`: the site then shows a
+# card linking to it instead of a copy.
+#
+# Good sources of public-domain images: Wikimedia Commons, the Library of
+# Congress (loc.gov), the Met's Open Access collection, the Rijksmuseum,
+# and the British Library.
+#
+# The entries below have their facts filled in but no image yet: find each
+# one at a source above, save or link it as `src`, and write your note.
+
+- id: sadiq-bey-mecca
+  title: "The Sacred Mosque, photographed by Muhammad Sadiq Bey"
+  collection: kaaba
+  year: 1880
+  date: "1880"
+  place: "Mecca"
+  creator: "Muhammad Sadiq Bey"
+  medium: Photograph
+  source: public-domain
+  context: |
+    Muhammad Sadiq Bey, an Egyptian army officer and surveyor, took the
+    earliest known photographs of Medina in 1861 and of Mecca in 1880, while
+    travelling with the Egyptian pilgrimage caravan. His views of the Haram
+    are among the first photographs of the Ka'ba ever made.
+  note: "Sample entry: add the image and your note on it."
+
+- id: snouck-hurgronje-mecca
+  title: "Mecca in Snouck Hurgronje's Bilder aus Mekka"
+  collection: kaaba
+  year: 1885
+  date: "1884–1885, published 1889"
+  place: "Mecca"
+  creator: "Christiaan Snouck Hurgronje and a Meccan physician he trained"
+  medium: Photograph
+  source: public-domain
+  context: |
+    The Dutch scholar Christiaan Snouck Hurgronje lived in Mecca in 1884–85
+    and published photographs of the city and its people in *Bilder aus
+    Mekka* (1889). Some were taken by a local doctor he had taught to use a
+    camera, who went on to photograph the Hajj after Snouck left.
+  note: "Sample entry: add the image and your note on it."
+
+- id: bedford-dome-of-the-rock
+  title: "The Dome of the Rock, photographed by Francis Bedford"
+  collection: mosques
+  year: 1862
+  date: "1862"
+  place: "Jerusalem"
+  creator: "Francis Bedford"
+  medium: Photograph
+  source: public-domain
+  context: |
+    Francis Bedford travelled as official photographer on the Prince of
+    Wales's tour of the Middle East in 1862, and photographed the Haram
+    al-Sharif in Jerusalem along the way.
+  note: "Sample entry: add the image and your note on it."
+
+- id: fenton-valley-of-the-shadow
+  title: "The Valley of the Shadow of Death"
+  collection: war
+  year: 1855
+  date: "April 1855"
+  place: "Near Sevastopol, Crimea"
+  creator: "Roger Fenton"
+  medium: Photograph
+  source: public-domain
+  context: |
+    Taken during the Crimean War, in which the Ottoman Empire, Britain, and
+    France fought Russia, this is one of the earliest famous photographs of
+    war. Fenton made two exposures of the same road: one with cannonballs
+    scattered across it and one with the road clear. Which came first, and
+    whether the cannonballs were moved onto the road for effect, has been
+    argued over ever since.
+  note: "Sample entry: add the image and your note on it."

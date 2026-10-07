@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% set sec = site.sections[entry.section] %}
+
+{% block title %}{{ entry.title }} | {{ site.title }}{% endblock %}
+{% block description %}{{ entry.summary or site.tagline }}{% endblock %}
+
+{% block content %}
+<article>
+  <header class="article-head">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="{{ '/writing/' | link }}">Writing</a><a href="{{ ('/' ~ entry.section ~ '/') | link }}">{{ sec.title }}</a></nav>
+    <h1>{{ entry.title }}</h1>
+
+    {% if entry.book %}
+    <p class="review-of">
+      A review of <i>{{ entry.book }}</i>{% if entry.author %} by {{ entry.author }}{% endif %}
+      {% if entry.rating %}<span class="stars" aria-label="{{ entry.rating }} out of 5">{{ entry.rating | stars }}</span>{% endif %}
+    </p>
+    {% endif %}
+
+    <p class="meta">
+      <span>{{ entry.date | nice_date }}</span>
+      <span>{{ entry.minutes }} min read</span>
+      {% for tag in entry.tags or [] %}<span class="tag">{{ tag }}</span>{% endfor %}
+    </p>
+  </header>
+
+  <div class="prose">
+    {{ entry.html }}
+  </div>
+
+  <p class="back"><a href="{{ ('/' ~ entry.section ~ '/') | link }}">All {{ sec.title | lower }}</a></p>
+</article>
+{% endblock %}

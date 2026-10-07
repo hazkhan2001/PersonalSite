@@ -1,0 +1,39 @@
+/* Ledger
+   An economist's notebook: cool white paper, slate ink, and the red of
+   accounting entries. Libre Franklin, a newspaper-style sans, for headings
+   and the interface; Gelasio, a sturdy reading serif, for the text. */
+
+@import url("https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700&family=Gelasio:ital,wght@0,400;0,500;1,400&display=swap");
+
+:root {
+  --paper: #f3f4f6;
+  --surface: #e6e8ec;
+  --ink: #232a35;
+  --ink-soft: #5a6271;
+  --accent: #b1271f;
+  --accent-ink: #ffffff;
+  --rule: #cbd0d8;
+
+  --body: "Gelasio", Georgia, serif;
+  --display: "Libre Franklin", "Helvetica Neue", Arial, sans-serif;
+  --ui: "Libre Franklin", "Helvetica Neue", Arial, sans-serif;
+  --display-weight: 700;
+  --display-tracking: -0.02em;
+  --body-size: 1.1rem;
+  --radius: 2px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #16191f;
+    --surface: #1f232b;
+    --ink: #e2e5ea;
+    --ink-soft: #979fad;
+    --accent: #f0675d;
+    --accent-ink: #16191f;
+    --rule: #303643;
+  }
+}
+
+/* The ledger's double rule closes off the masthead, drawn in ink. */
+.masthead { border-bottom: 3px double var(--ink); }

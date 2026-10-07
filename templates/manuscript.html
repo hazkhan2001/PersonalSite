@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% from "macros.html" import thumb %}
+{% set script = ms.script_info %}
+
+{% block title %}{{ ms.title }} | {{ site.title }}{% endblock %}
+
+{% block content %}
+<article class="manuscript">
+  <header class="article-head">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="{{ '/manuscripts/' | link }}">Manuscripts</a>
+      {% if script %}<a href="{{ script.url | link }}">{{ script.name }}</a>{% endif %}
+    </nav>
+    <h1>{{ ms.title }}</h1>
+    {% if ms.date %}<p class="meta"><span>{{ ms.date }}</span>{% if ms.place %}<span>{{ ms.place }}</span>{% endif %}</p>{% endif %}
+  </header>
+
+  {% if ms.images %}
+    {% for image in ms.images %}
+    <figure class="plate">
+      <a href="{{ image.src | image_src }}" title="Open the full image">{{ thumb(image.src, image.caption, script.name_ar if script else "", (script.name_lang or "ar") if script else "") }}</a>
+      {% if image.caption %}<figcaption>{{ image.caption }}</figcaption>{% endif %}
+    </figure>
+    {% endfor %}
+  {% else %}
+    <figure class="plate">{{ thumb("", "", script.name_ar if script else "", (script.name_lang or "ar") if script else "") }}<figcaption>No image yet.</figcaption></figure>
+  {% endif %}
+
+  {# A description list: label (dt) and value (dd) pairs. The loop skips
+     any field this manuscript doesn't have. #}
+  <dl class="catalogue">
+    {% for label, value in [
+        ("Script", script.name if script else ms.script),
+        ("Date", ms.date),
+        ("Made in", ms.place),
+        ("Scribe / calligrapher", ms.maker),
+        ("Material", ms.material),
+        ("Size", ms.size),
+        ("Held at", ms.institution),
+        ("Shelfmark", ms.shelfmark),
+        ("Image", ms.source_label),
+        ("Credit", ms.credit),
+    ] if value %}
+    <div><dt>{{ label }}</dt><dd>{{ value }}</dd></div>
+    {% endfor %}
+  </dl>
+
+  <div class="prose">
+    {{ ms.html }}
+  </div>
+
+  {% if ms.link %}<p><a class="more" href="{{ ms.link }}">Source and licence</a></p>{% endif %}
+
+  {% if script %}
+  <aside class="see-also">
+    <h2 class="section-label">About the script</h2>
+    <p><a href="{{ script.url | link }}">{{ script.name }}</a>: {{ script.summary }}</p>
+  </aside>
+  {% endif %}
+
+  <p class="back"><a href="{{ '/manuscripts/' | link }}">All manuscripts</a></p>
+</article>
+{% endblock %}

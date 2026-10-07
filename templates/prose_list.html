@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% from "macros.html" import writing_item %}
+{% set sec = site.sections[key] %}
+
+{% block title %}{{ sec.title }} | {{ site.title }}{% endblock %}
+
+{% block content %}
+<header class="page-head">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="{{ '/writing/' | link }}">Writing</a></nav>
+  <h1>{{ sec.title }}</h1>
+  <p class="lede">{{ sec.intro }}</p>
+</header>
+
+<ul class="entry-list">
+  {% for entry in entries %}
+    {{ writing_item(entry) }}
+  {% else %}
+    <li class="empty">Nothing published here yet.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% from "macros.html" import thumb %}
+{% set collection = image.collection_info %}
+
+{% block title %}{{ image.title }} | {{ site.title }}{% endblock %}
+
+{% block content %}
+<article class="image-entry">
+  <header class="article-head">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="{{ '/images/' | link }}">Images</a>
+      <a href="{{ collection.url | link }}">{{ collection.title }}</a>
+    </nav>
+    <h1>{{ image.title }}</h1>
+    <p class="meta">
+      {% if image.date %}<span>{{ image.date }}</span>{% endif %}
+      {% if image.place %}<span>{{ image.place }}</span>{% endif %}
+      {% if image.creator %}<span>{{ image.creator }}</span>{% endif %}
+    </p>
+  </header>
+
+  {# The image, with its credit directly underneath. Three cases:
+     an image file, a copyrighted image we only link to, or nothing yet. #}
+  <figure class="plate{% if image.sensitive %} sensitive{% endif %}">
+    {% if image.src %}
+      <div class="plate-media">
+        <a href="{{ image.src | image_src }}" title="Open the full image">{{ thumb(image.src, image.title) }}</a>
+        {% if image.sensitive %}
+        <button type="button" class="reveal" data-reveal>
+          <span class="reveal-note">{{ image.sensitive if image.sensitive is string else "This image shows violence or death." }}</span>
+          <span class="reveal-action">Show image</span>
+        </button>
+        {% endif %}
+      </div>
+    {% elif image.link %}
+      <a class="linked-image" href="{{ image.link }}">
+        <span class="linked-title">View this image at its source</span>
+        <span class="linked-why">{{ "It's still in copyright, so it's linked here rather than reproduced." if image.source == "copyrighted" else "It isn't reproduced on this site." }}</span>
+      </a>
+    {% else %}
+      {{ thumb("", "", image.year | year) }}
+    {% endif %}
+    <figcaption class="credit">
+      {% if image.credit %}{{ image.credit }}{% elif image.creator %}{{ image.creator }}{% endif %}
+      {% if image.licence %}<span class="licence">{{ image.licence }}</span>{% endif %}
+    </figcaption>
+  </figure>
+
+  {% if image.note %}
+  <section class="image-note">
+    <h2 class="section-label">My note</h2>
+    <div class="prose">{{ image.note_html }}</div>
+  </section>
+  {% endif %}
+
+  {% if image.context %}
+  <section>
+    <h2 class="section-label">Context</h2>
+    <div class="prose">{{ image.context_html }}</div>
+  </section>
+  {% endif %}
+
+  <dl class="catalogue">
+    {% for label, value in [
+        ("Date", image.date or (image.year | year)),
+        ("Place", image.place),
+        ("Made by", image.creator),
+        ("Medium", image.medium),
+        ("Rights", image.source_label),
+        ("Licence", image.licence),
+    ] if value %}
+    <div><dt>{{ label }}</dt><dd>{{ value }}</dd></div>
+    {% endfor %}
+  </dl>
+
+  {% if image.link %}<p><a class="more" href="{{ image.link }}">Source</a></p>{% endif %}
+
+  {# Step through the collection in date order. #}
+  <nav class="pager" aria-label="More from this collection">
+    {% if image.prev %}
+    <a class="pager-prev" href="{{ image.prev.url | link }}"><span class="meta">Earlier</span>{{ image.prev.title }}</a>
+    {% endif %}
+    {% if image.next %}
+    <a class="pager-next" href="{{ image.next.url | link }}"><span class="meta">Later</span>{{ image.next.title }}</a>
+    {% endif %}
+  </nav>
+
+  <p class="back"><a href="{{ collection.url | link }}">Back to {{ collection.title }}</a></p>
+</article>
+{% endblock %}

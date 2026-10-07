@@ -1,0 +1,40 @@
+# books.yaml: every book, one entry per book. Newest additions can go anywhere;
+# the Books page sorts them into groups by status.
+#
+# Fields:
+#   title, author, status   required. status is one of: reading, finished, to-read
+#   year                    the year you finished it (for status: finished)
+#   rating                  1 to 5 (optional)
+#   language                the language you read it in (optional)
+#   translator              if you read a translation (optional)
+#   review                  file name of your review in content/reviews/, without .md
+#   note                    a line or two of your own (optional)
+#
+# A finished book looks like this:
+#
+# - title: "The Muqaddimah"
+#   author: "Ibn Khaldun"
+#   translator: "Franz Rosenthal"
+#   status: finished
+#   year: 2026
+#   rating: 5
+#   review: the-muqaddimah
+#   note: "Read alongside the Arabic for the passages on asabiyya."
+#
+# The three entries below are samples. Replace them with your own.
+
+- title: "The Muqaddimah"
+  author: "Ibn Khaldun"
+  translator: "Franz Rosenthal"
+  status: to-read
+  note: "Sample entry."
+
+- title: "The Venture of Islam"
+  author: "Marshall G. S. Hodgson"
+  status: to-read
+  note: "Sample entry."
+
+- title: "Islamic Calligraphy"
+  author: "Sheila S. Blair"
+  status: to-read
+  note: "Sample entry."

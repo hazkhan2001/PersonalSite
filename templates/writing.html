@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% from "macros.html" import writing_item, filter_group, filter_status %}
+
+{% block title %}Writing | {{ site.title }}{% endblock %}
+
+{% block content %}
+<header class="page-head">
+  <h1>{{ site.sections.writing.title }}</h1>
+  <p class="lede">{{ site.sections.writing.intro }}</p>
+</header>
+
+{# data-filter-root marks the area filter.js controls #}
+<div data-filter-root>
+  <div class="filters">
+    {{ filter_group("kind", "Type", kind_options) }}
+  </div>
+  {{ filter_status() }}
+
+  <ul class="entry-list">
+    {% for entry in entries %}
+      {{ writing_item(entry, show_kind=true) }}
+    {% else %}
+      <li class="empty">Nothing published yet.</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }} | {{ site.title }}{% endblock %}
+
+{% block content %}
+<article>
+  <header class="article-head">
+    <h1>{{ page.title }}</h1>
+  </header>
+  <div class="prose">
+    {{ page.html }}
+  </div>
+
+  {# The About page also shows languages.yaml, grouped under headings.
+     Jinja's groupby filter does what our defaultdict does in build.py. #}
+  {% if page.slug == "about" and languages %}
+  <section class="languages">
+    {% for group, items in languages | groupby("group") %}
+    <h2 class="section-label">{{ group or "Languages" }}</h2>
+    <dl class="skill-list">
+      {% for item in items %}
+      <div>
+        <dt>{{ item.name }}{% if item.script %} <span class="meta">{{ item.script }}</span>{% endif %}</dt>
+        <dd>{{ item.level }}{% if item.note %}<span class="meta">{{ item.note }}</span>{% endif %}</dd>
+      </div>
+      {% endfor %}
+    </dl>
+    {% endfor %}
+  </section>
+  <p class="more-links">
+    <a class="more" href="{{ '/projects/' | link }}">Projects I've built</a>
+  </p>
+  {% endif %}
+</article>
+{% endblock %}

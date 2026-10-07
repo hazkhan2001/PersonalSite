@@ -1,0 +1,83 @@
+# site.yaml: settings for the whole site.
+# Edit freely; build.py reads this every time you build.
+
+title: "Hamza's Library"
+tagline: "Essays, manuscripts, and notes on history, economics, and language."
+author: "Hamza"
+
+# The look of the site: verdigris, lapis, or ledger (files in static/themes/).
+theme: ledger
+
+intro: >
+  A personal library of things I am reading, writing, and collecting:
+  economic analysis, essays on history and culture, Islamic manuscripts
+  and the scripts they were written in, lines of poetry that stayed with me,
+  and the projects I have built along the way.
+
+# The public address is site_url + base_url:
+#   https://hazkhan2001.github.io/PersonalSite
+# site_url is used for the RSS feed. base_url is the folder the site lives in,
+# which on GitHub Pages is the repository's name. If you later move the site to
+# its own domain (e.g. hamzalibrary.com), set site_url to that and base_url to "".
+site_url: "https://hazkhan2001.github.io"
+base_url: "/PersonalSite"
+
+# The navigation bar. `key` matches the section a page belongs to, which is
+# how the current page gets highlighted.
+nav:
+  - { key: writing,     label: "Writing",     url: "/writing/" }
+  - { key: manuscripts, label: "Manuscripts", url: "/manuscripts/" }
+  - { key: scripts,     label: "Scripts",     url: "/scripts/" }
+  - { key: images,      label: "Images",      url: "/images/" }
+  - { key: poetry,      label: "Poetry",      url: "/poetry/" }
+  - { key: books,       label: "Books",       url: "/books/" }
+  - { key: projects,    label: "Projects",    url: "/projects/" }
+  - { key: about,       label: "About",       url: "/about/" }
+
+# Titles and introductions for each section. `blurb` is the one-liner
+# shown on the homepage.
+sections:
+  writing:
+    title: "Writing"
+    intro: "Essays, economic analysis, and book reviews, newest first."
+    blurb: "Essays, economic analysis, and reviews"
+  essays:
+    title: "Essays"
+    intro: "Longer pieces on history, culture, and Islamic thought."
+  analysis:
+    title: "Economic Analysis"
+    intro: "Notes and studies on markets, policy, and the economies I follow."
+  reviews:
+    title: "Book Reviews"
+    intro: "Reviews of books I have finished."
+  manuscripts:
+    title: "Manuscripts"
+    intro: >
+      A growing collection of manuscripts from across Islamic history: what
+      they look like, where and when they were made, and who made them.
+      Images are public domain or my own photographs.
+    blurb: "Manuscripts from across Islamic history"
+  scripts:
+    title: "Scripts"
+    intro: >
+      The major hands of the Arabic script, roughly in the order they
+      emerged, with the manuscripts in this collection written in each.
+    blurb: "How the Arabic script changed over the centuries"
+  images:
+    title: "Images"
+    intro: >
+      Photographs, paintings, and engravings of places and moments from the
+      past, each with its credit and my note on it.
+    blurb: "Pictures of the past, with notes"
+  poetry:
+    title: "Poetry & Idioms"
+    intro: "Lines of verse and sayings, in many languages, that have stayed with me."
+    blurb: "Lines and sayings that stayed with me"
+  books:
+    title: "Books"
+    intro: "What I am reading, what I have read, and what is waiting on the shelf."
+    blurb: "What I am reading and have read"
+  projects:
+    title: "Projects"
+    intro: "Things I have built or am building."
+    blurb: "Things I have built"

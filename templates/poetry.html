@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% from "macros.html" import poem_block, filter_group, filter_status %}
+
+{% block title %}Poetry &amp; Idioms | {{ site.title }}{% endblock %}
+
+{% block content %}
+<header class="page-head">
+  <h1>{{ site.sections.poetry.title }}</h1>
+  <p class="lede">{{ site.sections.poetry.intro }}</p>
+</header>
+
+<div data-filter-root>
+  <div class="filters">
+    {{ filter_group("language", "Language", language_options) }}
+    {{ filter_group("kind", "Kind", kind_options) }}
+  </div>
+  {{ filter_status() }}
+
+  <ul class="poem-list">
+    {% for poem in poems %}
+    <li data-item data-language="{{ poem.filter_key }}" data-kind="{{ poem.kind }}">
+      {{ poem_block(poem) }}
+      {% if poem.note %}<div class="poem-note">{{ poem.note_html }}</div>{% endif %}
+    </li>
+    {% else %}
+    <li class="empty">Nothing here yet.</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

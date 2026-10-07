@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{{ site.title }}{% endblock %}</title>
+  <meta name="description" content="{% block description %}{{ site.tagline }}{% endblock %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  {# Arabic-script fonts, shared by every theme. Browsers only download them
+     on pages that actually contain Arabic, Persian or Urdu letters. #}
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Noto+Nastaliq+Urdu:wght@400;600&display=swap" rel="stylesheet">
+  {# style.css holds the layout; the theme file sets colours and fonts.
+     Switch themes with the `theme:` line in site.yaml. #}
+  <link rel="stylesheet" href="{{ '/static/style.css' | link }}">
+  <link rel="stylesheet" href="{{ ('/static/themes/' ~ (site.theme or 'verdigris') ~ '.css') | link }}">
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | link }}">
+  <script src="{{ '/static/site.js' | link }}" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="masthead">
+    <a class="site-title" href="{{ '/' | link }}">{{ site.title }}</a>
+    <nav aria-label="Main">
+      {% for item in site.nav %}
+      <a href="{{ item.url | link }}"{% if section == item.key %} aria-current="page"{% endif %}>{{ item.label }}</a>
+      {% endfor %}
+    </nav>
+  </header>
+
+  <main id="main">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer>
+    <p>Kept by {{ site.author }}</p>
+    <p><a href="{{ '/feed.xml' | link }}">RSS feed</a></p>
+  </footer>
+</body>
+</html>

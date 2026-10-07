@@ -1,0 +1,528 @@
+/* style.css: the layout of the whole site.
+
+   Colours and fonts are NOT set here. They come from variables (the
+   --names below) that a theme file in static/themes/ fills in. That split
+   means a theme can change the whole look without touching any layout.
+
+   The defaults below are plain fallbacks, used only if a theme leaves a
+   variable out. */
+
+:root {
+  --paper: #f4f4f2;
+  --surface: #e8e8e5;
+  --ink: #222;
+  --ink-soft: #666;
+  --accent: #345;
+  --accent-ink: #fff;        /* text colour on top of the accent */
+  --rule: #ccc;
+  --body: Georgia, serif;            /* long reading text */
+  --display: Georgia, serif;         /* headings */
+  --ui: system-ui, sans-serif;       /* navigation, labels, dates, buttons */
+  --arabic: "Amiri", "Noto Naskh Arabic", "Traditional Arabic", serif;
+  --nastaliq: "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", var(--arabic);
+  --body-size: 1.2rem;
+  --display-weight: 500;
+  --display-tracking: 0;
+  --radius: 3px;
+  --width: 46rem;          /* page column width */
+  --measure: 38rem;        /* line length for long reading */
+}
+
+/* ---------- Page basics ---------- */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: var(--body-size);
+  line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+}
+
+main, .masthead, footer {
+  max-width: var(--width);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.skip-link { position: absolute; left: -999px; }
+.skip-link:focus { left: 1rem; top: 1rem; background: var(--paper); padding: 0.5rem; z-index: 10; }
+
+/* Arabic-script text anywhere on the site picks up the right font.
+   :lang(ur) matches any element marked lang="ur". */
+:lang(ar), :lang(fa), :lang(ps), :lang(ota) { font-family: var(--arabic); }
+:lang(ur) { font-family: var(--nastaliq); }
+
+/* ---------- Masthead and navigation ---------- */
+.masthead {
+  padding-top: 1.75rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 2.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+}
+.site-title {
+  font-family: var(--display);
+  font-weight: var(--display-weight);
+  letter-spacing: var(--display-tracking);
+  font-size: 1.4rem;
+  color: var(--ink);
+  text-decoration: none;
+}
+nav { display: flex; flex-wrap: wrap; gap: 0.2rem 1.1rem; font-family: var(--ui); }
+nav a { font-size: 0.95rem; color: var(--ink-soft); text-decoration: none; padding: 0.1rem 0; }
+nav a:hover { color: var(--ink); }
+nav a[aria-current="page"] { color: var(--ink); box-shadow: inset 0 -2px 0 var(--accent); }
+
+/* ---------- Headings and shared text styles ---------- */
+h1, h2, h3 {
+  font-family: var(--display);
+  font-weight: var(--display-weight);
+  letter-spacing: var(--display-tracking);
+}
+h1 { font-size: 2.3rem; line-height: 1.12; margin: 0 0 0.6rem; }
+h2 { font-size: 1.5rem; line-height: 1.25; margin: 2rem 0 0.5rem; }
+h3 { font-size: 1.25rem; margin: 1.5rem 0 0.25rem; }
+
+.hero { margin-bottom: 2.5rem; }
+.hero h1 { font-size: clamp(2.5rem, 8vw, 3.6rem); line-height: 1.02; margin-bottom: 1rem; }
+.page-head { margin-bottom: 2rem; }
+.lede { font-size: 1.2rem; color: var(--ink-soft); margin: 0; max-width: var(--measure); }
+
+/* Small text in the interface font: navigation trails, dates, labels. */
+.crumbs, .meta, .section-label, .tag, .kind, .more, .filter-label, .status,
+.back, .catalogue dt, .timeline-when, .count, .filter-group button,
+.section-blurb, .card .meta, footer {
+  font-family: var(--ui);
+}
+
+/* Breadcrumbs: "Manuscripts / Hijazi". The slash is added by CSS. */
+.crumbs { display: flex; flex-wrap: wrap; gap: 0.45rem; font-size: 0.9rem; margin-bottom: 0.6rem; }
+.crumbs a { color: var(--ink-soft); text-decoration: none; }
+.crumbs a:hover { color: var(--accent); text-decoration: underline; }
+.crumbs a + a::before { content: "/"; margin-right: 0.45rem; color: var(--rule); }
+
+/* Meta lines: each piece is its own <span>, spaced apart by the gap
+   instead of joined with dots. */
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.1rem 0.9rem;
+  color: var(--ink-soft);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+p.meta { margin: 0 0 0.5rem; }
+
+.section-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--ink);
+  border-top: 1px solid var(--rule);
+  padding-top: 0.7rem;
+  margin: 3rem 0 1rem;
+}
+.count { float: right; font-weight: 400; color: var(--ink-soft); }
+
+.tag {
+  font-size: 0.8rem;
+  background: var(--surface);
+  color: var(--ink-soft);
+  padding: 0.05rem 0.45rem;
+  border-radius: var(--radius);
+}
+.kind { color: var(--accent); font-weight: 600; }
+.more { font-size: 0.95rem; font-weight: 500; margin-right: 1.25rem; }
+.back { margin-top: 3rem; font-size: 0.95rem; }
+.empty { color: var(--ink-soft); font-style: italic; }
+.stars { color: var(--accent); letter-spacing: 0.1em; }
+
+ul.entry-list, .book-list, .card-grid, .section-grid, .poem-list, .project-list, .timeline {
+  list-style: none; padding: 0; margin: 0;
+}
+
+/* ---------- Lists of writing ---------- */
+.entry-list li { padding: 1.1rem 0; border-bottom: 1px solid var(--rule); }
+.entry-list li:first-child { padding-top: 0.25rem; }
+.entry-title {
+  display: block;
+  font-family: var(--display);
+  font-weight: var(--display-weight);
+  letter-spacing: var(--display-tracking);
+  font-size: 1.35rem;
+  line-height: 1.25;
+  color: var(--ink);
+  text-decoration: none;
+  margin-bottom: 0.2rem;
+}
+.entry-title:hover { color: var(--accent); }
+.entry-list p { margin: 0.35rem 0 0; }
+
+/* ---------- Articles ---------- */
+.article-head { margin-bottom: 2rem; }
+.review-of { font-size: 1.15rem; margin: 0 0 0.4rem; }
+.prose { max-width: var(--measure); }
+.prose p { margin: 0 0 1.1rem; }
+.prose blockquote {
+  margin: 1.5rem 0;
+  padding-left: 1.25rem;
+  border-left: 3px solid var(--accent);
+  color: var(--ink-soft);
+}
+.prose code {
+  font-size: 0.85em;
+  background: var(--surface);
+  padding: 0.1em 0.3em;
+  border-radius: var(--radius);
+}
+.prose pre { background: var(--surface); padding: 1rem; overflow-x: auto; font-size: 0.9rem; border-radius: var(--radius); }
+.prose pre code { background: none; padding: 0; }
+.prose img { max-width: 100%; height: auto; }
+.prose hr { border: 0; border-top: 1px solid var(--rule); margin: 2rem 0; }
+.prose table { border-collapse: collapse; margin: 1.5rem 0; font-size: 1rem; display: block; overflow-x: auto; }
+.prose th, .prose td { border-bottom: 1px solid var(--rule); padding: 0.4rem 0.8rem; text-align: left; }
+.prose th { font-family: var(--ui); font-size: 0.9rem; }
+.prose .footnote { font-size: 1rem; color: var(--ink-soft); }
+
+/* ---------- Filter buttons ---------- */
+.filters { display: grid; gap: 0.6rem; margin-bottom: 0.75rem; }
+.filter-group { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; }
+.filter-label { color: var(--ink-soft); font-size: 0.9rem; width: 5rem; flex-shrink: 0; }
+.filter-group button {
+  font-size: 0.88rem;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 0.25rem 0.7rem;
+  cursor: pointer;
+}
+.filter-group button:hover { border-color: var(--accent); }
+.filter-group button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.filter-status { min-height: 1.5em; margin: 0 0 0.5rem; }
+
+/* ---------- Homepage section index ---------- */
+/* A plain contents list rather than cards: name, count, one line. */
+.section-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr)); gap: 0 1.5rem; }
+.section-grid a {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0 0.5rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--rule);
+  color: var(--ink);
+  text-decoration: none;
+  height: 100%;
+}
+.section-grid a:hover .section-name { color: var(--accent); }
+.section-name {
+  font-family: var(--display);
+  font-weight: var(--display-weight);
+  letter-spacing: var(--display-tracking);
+  font-size: 1.25rem;
+}
+.section-count { font-family: var(--ui); font-size: 0.95rem; color: var(--ink-soft); align-self: baseline; }
+.section-blurb { grid-column: 1 / -1; color: var(--ink-soft); font-size: 0.88rem; line-height: 1.4; }
+
+/* ---------- Manuscript cards and images ---------- */
+.card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr)); gap: 1.5rem 1.25rem; }
+.card a { display: block; color: var(--ink); text-decoration: none; }
+.card a:hover .card-title { color: var(--accent); }
+.card-body { display: block; padding-top: 0.55rem; }
+.card-title {
+  display: block;
+  font-family: var(--display);
+  font-weight: var(--display-weight);
+  letter-spacing: var(--display-tracking);
+  font-size: 1.12rem;
+  line-height: 1.3;
+  margin-bottom: 0.15rem;
+}
+.card[hidden], [data-item][hidden] { display: none; }
+
+.thumb {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 3;
+  background: var(--surface);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* The stand-in shown when there's no image or it fails to load:
+   the script's own name, written in that script. */
+.thumb-fallback {
+  display: none;
+  position: absolute;
+  inset: 0;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  color: var(--ink-soft);
+  opacity: 0.45;
+}
+.thumb.missing img { display: none; }
+.thumb.missing .thumb-fallback { display: flex; }
+
+.plate { margin: 0 0 1.5rem; }
+.plate .thumb { aspect-ratio: auto; min-height: 12rem; }
+.plate .thumb img { height: auto; object-fit: contain; }
+.plate .thumb.missing { aspect-ratio: 4 / 3; }
+.plate figcaption { color: var(--ink-soft); font-size: 1rem; font-style: italic; margin-top: 0.5rem; }
+
+/* The catalogue entry: label / value pairs, like a museum record. */
+.catalogue { margin: 0 0 2rem; border-top: 1px solid var(--rule); }
+.catalogue div {
+  display: grid;
+  grid-template-columns: 9.5rem 1fr;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: 1.05rem;
+}
+.catalogue dt { font-size: 0.85rem; color: var(--ink-soft); padding-top: 0.2rem; }
+.catalogue dd { margin: 0; }
+@media (max-width: 30rem) {
+  .catalogue div { grid-template-columns: 1fr; gap: 0; }
+}
+.see-also p { margin: 0.5rem 0; }
+
+/* ---------- Images ---------- */
+.lede p { margin: 0; }
+
+/* The Images page: one row per collection, cover on the left. */
+.collection-list { list-style: none; padding: 0; margin: 0; }
+.collection { border-bottom: 1px solid var(--rule); }
+.collection:first-child { border-top: 1px solid var(--rule); }
+.collection a {
+  display: grid;
+  grid-template-columns: 11rem 1fr;
+  gap: 1.25rem;
+  align-items: start;
+  padding: 1.25rem 0;
+  color: var(--ink);
+  text-decoration: none;
+}
+.collection a:hover .collection-title { color: var(--accent); }
+.collection-title {
+  display: block;
+  font-family: var(--display);
+  font-weight: var(--display-weight);
+  letter-spacing: var(--display-tracking);
+  font-size: 1.45rem;
+  line-height: 1.2;
+  margin-bottom: 0.25rem;
+}
+.collection .meta { margin-bottom: 0.4rem; }
+.collection-intro { display: block; color: var(--ink-soft); font-size: 1.02rem; }
+@media (max-width: 30rem) {
+  .collection a { grid-template-columns: 7.5rem 1fr; gap: 0.9rem; }
+  .collection-title { font-size: 1.2rem; }
+  .collection-intro { font-size: 0.95rem; }
+  .collection .thumb-fallback:not(.script) { font-size: 1.1rem; padding: 0 0.4rem; }
+}
+
+/* A year or label standing in for a missing image, set in the display face. */
+.thumb-fallback:not(.script) {
+  font-family: var(--display);
+  font-weight: var(--display-weight);
+  letter-spacing: var(--display-tracking);
+  font-size: 2rem;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+/* The credit line sits directly under the image. */
+.plate .credit { font-style: normal; font-family: var(--ui); font-size: 0.88rem; }
+.credit .licence { margin-left: 0.6rem; }
+.image-note .prose { font-size: 1.12em; }
+
+/* Sensitive images: blurred until revealed. In grids they stay blurred. */
+.plate-media, .thumb.is-sensitive { position: relative; overflow: hidden; border-radius: var(--radius); }
+.sensitive img, .thumb.is-sensitive img { filter: blur(28px) grayscale(0.6); transform: scale(1.1); }
+.sensitive.revealed img { filter: none; transform: none; }
+.thumb.is-sensitive::after {
+  content: "Content note";
+  position: absolute;
+  left: 0.5rem;
+  bottom: 0.5rem;
+  font-family: var(--ui);
+  font-size: 0.75rem;
+  background: var(--paper);
+  color: var(--ink);
+  padding: 0.1rem 0.4rem;
+  border-radius: var(--radius);
+}
+.reveal {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 1.5rem;
+  border: 0;
+  background: color-mix(in srgb, var(--paper) 55%, transparent);
+  color: var(--ink);
+  font-family: var(--ui);
+  cursor: pointer;
+  text-align: center;
+}
+.reveal-note { font-size: 1rem; max-width: 22rem; }
+.reveal-action {
+  font-weight: 600;
+  font-size: 0.9rem;
+  background: var(--accent);
+  color: var(--accent-ink);
+  padding: 0.35rem 0.9rem;
+  border-radius: var(--radius);
+}
+
+/* A copyrighted image we link to instead of copying. */
+.linked-image {
+  display: grid;
+  gap: 0.35rem;
+  padding: 2.5rem 1.5rem;
+  background: var(--surface);
+  border-radius: var(--radius);
+  text-decoration: none;
+  text-align: center;
+}
+.linked-title { font-family: var(--ui); font-weight: 600; color: var(--accent); }
+.linked-why { color: var(--ink-soft); font-size: 1rem; }
+
+/* Earlier / later within a collection. */
+.pager {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  border-top: 1px solid var(--rule);
+  padding-top: 1rem;
+}
+.pager a { color: var(--ink); text-decoration: none; font-family: var(--display); font-weight: var(--display-weight); line-height: 1.3; }
+.pager a:hover { color: var(--accent); }
+.pager .meta { display: block; margin-bottom: 0.2rem; font-weight: 400; }
+.pager-next { grid-column: 2; text-align: right; }
+
+/* ---------- Scripts timeline ---------- */
+.timeline { border-left: 2px solid var(--rule); margin-left: 0.3rem; }
+.timeline-item { position: relative; padding: 0 0 2.25rem 1.5rem; }
+.timeline-item::before {          /* the marker on the line */
+  content: "";
+  position: absolute;
+  left: -0.42rem;
+  top: 0.45rem;
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid var(--paper);
+}
+.timeline-when { display: block; font-size: 0.88rem; font-weight: 600; color: var(--accent); }
+.timeline-card { display: block; color: var(--ink); text-decoration: none; }
+.timeline-card:hover .card-title { color: var(--accent); }
+.timeline-card .meta { margin: 0.15rem 0 0.35rem; }
+.timeline-card .summary { display: block; }
+.timeline-card .card-title { font-size: 1.5rem; }
+.script-name-ar { display: block; font-size: 2.1rem; line-height: 1.6; color: var(--ink-soft); text-align: left; }
+.script-name-ar.large { font-size: 4rem; line-height: 1.4; margin: 0; color: var(--accent); }
+.features { padding-left: 1.2rem; }
+.features li { margin-bottom: 0.4rem; }
+
+/* ---------- Poetry ---------- */
+.poem-list > li { padding: 1.75rem 0; border-bottom: 1px solid var(--rule); }
+.poem-list > li:first-child { padding-top: 0.5rem; }
+.poem { margin: 0; }
+.poem .original {
+  margin: 0 0 0.75rem;
+  font-size: 1.85rem;
+  line-height: 1.9;
+  white-space: pre-line;      /* keep the line breaks from the YAML file */
+}
+.poem .original:lang(ur) { font-size: 1.6rem; line-height: 2.4; }  /* Nasta'liq needs more room */
+.poem .translit { margin: 0 0 0.6rem; color: var(--ink-soft); font-style: italic; white-space: pre-line; font-size: 1rem; }
+.poem .translation { margin: 0 0 0.6rem; white-space: pre-line; font-size: 1.22rem; }
+.poem .attribution { display: grid; gap: 0.1rem; }
+.poem .poet { font-weight: 500; }
+.poem-note { margin-top: 0.75rem; font-size: 1.02rem; color: var(--ink-soft); max-width: var(--measure); }
+.poem-note p { margin: 0; }
+
+/* ---------- Books ---------- */
+.book { padding: 0.9rem 0; border-bottom: 1px solid var(--rule); }
+.book-title { font-size: 1.22rem; }
+.book-author { display: block; }
+.book .meta { margin-top: 0.15rem; }
+.book-note { margin: 0.3rem 0 0; font-size: 1.02rem; }
+
+/* ---------- Projects ---------- */
+.project { padding: 1.4rem 0 1.6rem; border-bottom: 1px solid var(--rule); }
+.project:first-child { padding-top: 0.25rem; }
+.project-head h2 { margin: 0 0 0.3rem; }
+.status { color: var(--accent); font-weight: 600; }
+.project > p { margin: 0 0 0.7rem; max-width: var(--measure); }
+.project .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+/* ---------- About: languages and skills ---------- */
+.skill-list { margin: 0; }
+.skill-list div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0 1rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+.skill-list dt { font-weight: 500; }
+.skill-list dt .meta { display: inline; margin-left: 0.4rem; }
+.skill-list dd { margin: 0; font-family: var(--ui); font-size: 0.95rem; }
+.skill-list dd .meta { display: block; text-align: right; }
+.more-links { margin-top: 2rem; }
+
+/* ---------- Footer ---------- */
+footer {
+  margin-top: 4rem;
+  padding-top: 1rem;
+  padding-bottom: 2.5rem;
+  border-top: 1px solid var(--rule);
+  color: var(--ink-soft);
+  font-size: 0.88rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+footer p { margin: 0; }
+footer a { color: var(--ink-soft); }
+
+/* ---------- Small screens ---------- */
+@media (max-width: 30rem) {
+  :root { --body-size: 1.1rem; }
+  h1 { font-size: 1.95rem; }
+  .filter-label { width: 100%; }
+  .poem .original { font-size: 1.5rem; }
+  .poem .original:lang(ur) { font-size: 1.15rem; line-height: 2.3; }
+  .section-grid, .card-grid { grid-template-columns: 1fr 1fr; gap: 0 1rem; }
+  .card-grid { gap: 1.25rem 0.85rem; }
+  .section-name { font-size: 1.12rem; }
+  .card-title { font-size: 1rem; }
+  .thumb-fallback { font-size: 2.2rem; }
+  .script-name-ar.large { font-size: 3.2rem; }
+}
+
+/* Respect visitors who ask their device for less motion. */
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto !important; transition: none !important; }
+}

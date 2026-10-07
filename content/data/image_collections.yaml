@@ -1,0 +1,27 @@
+# image_collections.yaml: the groups the Images section is divided into.
+# Shown on the Images page in this order.
+#
+# Fields:
+#   id      required. Short, lowercase-with-hyphens; becomes the URL
+#   title   required
+#   intro   a paragraph introducing the collection, in Markdown
+#   cover   the id of the image to show on the Images page (optional;
+#           otherwise the first image with a file is used)
+
+- id: kaaba
+  title: "The Ka'ba through time"
+  intro: >
+    Photographs, paintings, and drawings of the Ka'ba and the Sacred Mosque
+    in Mecca, from the earliest images to the present.
+
+- id: mosques
+  title: "Mosques and sacred places"
+  intro: >
+    Mosques and shrines across the Muslim world, as artists and
+    photographers recorded them before modern rebuilding.
+
+- id: war
+  title: "War and conflict"
+  intro: >
+    Images of war, especially in and around the Muslim world: how battles
+    and their aftermath were recorded, and how those records were shaped.

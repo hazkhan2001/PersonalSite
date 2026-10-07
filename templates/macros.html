@@ -1,0 +1,111 @@
+{#
+  macros.html: reusable pieces of HTML. A macro works like a Python
+  function for templates: define it once here, then use it on any page with
+    {% from "macros.html" import writing_item %}
+    {{ writing_item(entry) }}
+#}
+
+{# One row in a list of essays, analyses or reviews. #}
+{% macro writing_item(entry, show_kind=false) %}
+<li data-item data-kind="{{ entry.section }}">
+  <a class="entry-title" href="{{ entry.url | link }}">{{ entry.title }}</a>
+  <span class="meta">
+    {% if show_kind %}<span class="kind">{{ entry.kind }}</span>{% endif %}
+    <span>{{ entry.date | nice_date }}</span>
+    <span>{{ entry.minutes }} min read</span>
+  </span>
+  {% if entry.summary %}<p>{{ entry.summary }}</p>{% endif %}
+</li>
+{% endmacro %}
+
+
+{# A row of filter buttons. `options` is a list of (value, label) pairs. #}
+{% macro filter_group(name, label, options) %}
+{% if options | length > 1 %}
+<div class="filter-group" role="group" aria-label="Filter by {{ label | lower }}">
+  <span class="filter-label">{{ label }}</span>
+  <button type="button" data-filter="{{ name }}" data-value="" aria-pressed="true">All</button>
+  {% for value, text in options %}
+  <button type="button" data-filter="{{ name }}" data-value="{{ value }}" aria-pressed="false">{{ text }}</button>
+  {% endfor %}
+</div>
+{% endif %}
+{% endmacro %}
+
+
+{# Shown under a filtered list: a live count and a "nothing matches" note. #}
+{% macro filter_status() %}
+<p class="filter-status meta" data-filter-status aria-live="polite"></p>
+<p class="filter-empty" data-filter-empty hidden>Nothing matches these filters.</p>
+{% endmacro %}
+
+
+{# An image thumbnail, used by manuscripts and the Images section.
+     src       the image address (empty if there isn't one yet)
+     alt       a description for screen readers
+     label     what to show if there's no image or it fails to load
+     lang      set to "ar" or "fa" when the label is in Arabic script
+     sensitive blur the image until the visitor chooses to see it #}
+{% macro thumb(src, alt="", label="", lang="", sensitive=false) %}
+<span class="thumb{% if not src %} missing{% endif %}{% if sensitive %} is-sensitive{% endif %}">
+  {% if src %}
+  <img src="{{ src | image_src }}" alt="{{ alt }}" loading="lazy"
+       onerror="this.parentNode.classList.add('missing')">
+  {% endif %}
+  <span class="thumb-fallback{% if lang %} script{% endif %}"{% if lang %} lang="{{ lang }}" dir="rtl"{% endif %} aria-hidden="true">{{ label }}</span>
+</span>
+{% endmacro %}
+
+
+{# One manuscript card in a gallery grid. #}
+{% macro manuscript_card(ms) %}
+<li class="card" data-item data-script="{{ ms.script }}" data-century="{{ ms.century }}" data-source="{{ ms.source }}">
+  <a href="{{ ms.url | link }}">
+    {% set s = ms.script_info %}
+    {{ thumb(ms.cover.src if ms.cover else '', ms.cover.caption if ms.cover else '',
+             s.name_ar if s else '', (s.name_lang or 'ar') if s else '') }}
+    <span class="card-body">
+      <span class="card-title">{{ ms.title }}</span>
+      <span class="meta">
+        {% if ms.script_info %}<span>{{ ms.script_info.name }}</span>{% endif %}
+        {% if ms.century %}<span>{{ ms.century | ordinal }} century</span>{% endif %}
+      </span>
+    </span>
+  </a>
+</li>
+{% endmacro %}
+
+
+{# A line of poetry or a saying: original, transliteration, translation. #}
+{% macro poem_block(poem) %}
+<figure class="poem">
+  <blockquote class="original" lang="{{ poem.lang }}" dir="{{ poem.dir }}">{{ poem.original }}</blockquote>
+  {% if poem.transliteration %}<p class="translit">{{ poem.transliteration }}</p>{% endif %}
+  <p class="translation">{{ poem.translation }}</p>
+  <figcaption class="attribution">
+    {% if poem.poet %}<span class="poet">{{ poem.poet }}{% if poem.work %}, <i>{{ poem.work }}</i>{% endif %}</span>{% endif %}
+    <span class="meta">
+      <span>{{ poem.language }}</span>
+      {% if poem.century %}<span>{{ poem.century | ordinal }} century</span>{% endif %}
+    </span>
+  </figcaption>
+</figure>
+{% endmacro %}
+
+
+{# One image card in a collection grid. With no image yet, its year stands in. #}
+{% macro image_card(image) %}
+<li class="card" data-item data-medium="{{ image.medium_key }}">
+  <a href="{{ image.url | link }}">
+    {{ thumb(image.src, image.title, image.year | year, sensitive=image.sensitive) }}
+    <span class="card-body">
+      <span class="card-title">{{ image.title }}</span>
+      <span class="meta">
+        {% if image.date %}<span>{{ image.date }}</span>{% endif %}
+        {% if image.creator %}<span>{{ image.creator }}</span>{% endif %}
+        {% if image.source == "copyrighted" %}<span>Linked</span>{% endif %}
+      </span>
+    </span>
+  </a>
+</li>
+{% endmacro %}

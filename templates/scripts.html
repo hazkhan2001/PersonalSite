@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Scripts | {{ site.title }}{% endblock %}
+
+{% block content %}
+<header class="page-head">
+  <h1>{{ site.sections.scripts.title }}</h1>
+  <p class="lede">{{ site.sections.scripts.intro }}</p>
+</header>
+
+<ol class="timeline">
+  {% for script in scripts %}
+  <li class="timeline-item">
+    <span class="timeline-when">{% if script.from_century %}{{ script.from_century | ordinal }} c.{% endif %}</span>
+    <a class="timeline-card" href="{{ script.url | link }}">
+      <span class="script-name-ar" lang="{{ script.name_lang or 'ar' }}" dir="rtl">{{ script.name_ar }}</span>
+      <span class="card-title">{{ script.name }}</span>
+      {% if script.period %}<span class="meta">{{ script.period }}</span>{% endif %}
+      <span class="summary">{{ script.summary }}</span>
+      {% set n = script.manuscripts | length %}
+      {% if n %}<span class="meta">{{ n }} manuscript{{ "s" if n != 1 }} in the collection</span>{% endif %}
+    </a>
+  </li>
+  {% endfor %}
+</ol>
+{% endblock %}

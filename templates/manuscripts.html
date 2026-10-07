@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% from "macros.html" import manuscript_card, filter_group, filter_status %}
+
+{% block title %}Manuscripts | {{ site.title }}{% endblock %}
+
+{% block content %}
+<header class="page-head">
+  <h1>{{ site.sections.manuscripts.title }}</h1>
+  <p class="lede">{{ site.sections.manuscripts.intro }}</p>
+</header>
+
+<div data-filter-root>
+  <div class="filters">
+    {{ filter_group("script", "Script", filters.script) }}
+    {{ filter_group("century", "Century", filters.century) }}
+    {{ filter_group("source", "Source", filters.source) }}
+  </div>
+  {{ filter_status() }}
+
+  <ul class="card-grid">
+    {% for ms in manuscripts %}
+      {{ manuscript_card(ms) }}
+    {% else %}
+      <li class="empty">No manuscripts yet.</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

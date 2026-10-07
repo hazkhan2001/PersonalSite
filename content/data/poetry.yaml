@@ -1,0 +1,77 @@
+# poetry.yaml: lines of verse and sayings that have stayed with you.
+#
+# Fields:
+#   original         required. The line in its own script. Use | for several lines.
+#   language         required. Must be a name listed in LANGUAGE_CODES in build.py
+#   translation      required
+#   transliteration  in Latin letters (optional)
+#   kind             verse, idiom, or proverb (defaults to verse)
+#   poet             who wrote or said it
+#   work             the book or collection it comes from
+#   century          a number, e.g. 10
+#   featured         true to show it on the homepage
+#   note             why it stays with you, in Markdown
+#
+# Right-to-left languages (Arabic, Persian, Urdu and others) are handled
+# automatically from the language name.
+#
+# Copyright: classical poetry is public domain, and your own translations
+# are yours. For modern poems or published translations, keep to a line or
+# two, credit the translator, and link to the source.
+#
+# The entries below are samples with working translations I drafted. Replace
+# them with your own lines, translations, and notes.
+
+- original: |
+    الخيلُ والليلُ والبيداءُ تعرفني
+    والسيفُ والرمحُ والقرطاسُ والقلمُ
+  transliteration: |
+    al-khaylu wa-l-laylu wa-l-baydāʾu taʿrifunī
+    wa-s-sayfu wa-r-rumḥu wa-l-qirṭāsu wa-l-qalamu
+  translation: |
+    The horses, the night, and the desert know me,
+    and the sword, the spear, the paper, and the pen.
+  language: Arabic
+  kind: verse
+  poet: "al-Mutanabbi"
+  century: 10
+  featured: true
+  note: "Sample entry: replace this with why the line stays with you."
+
+- original: |
+    بنی آدم اعضای یکدیگرند
+    که در آفرینش ز یک گوهرند
+  transliteration: |
+    banī ādam aʿzā-yi yakdīgar-and
+    ki dar āfarīnish zi yak gawhar-and
+  translation: |
+    The children of Adam are limbs of one another,
+    for in their making they share one essence.
+  language: Persian
+  kind: verse
+  poet: "Saʿdi"
+  work: "Gulistan"
+  century: 13
+  note: "Sample entry: replace this with why the line stays with you."
+
+- original: |
+    ہزاروں خواہشیں ایسی کہ ہر خواہش پہ دم نکلے
+    بہت نکلے مرے ارمان لیکن پھر بھی کم نکلے
+  transliteration: |
+    hazāroñ ḳhvāhisheñ aisī ki har ḳhvāhish pe dam nikle
+    bahut nikle mire armān lekin phir bhī kam nikle
+  translation: |
+    A thousand longings, each worth dying for;
+    many of my hopes came true, and still too few.
+  language: Urdu
+  kind: verse
+  poet: "Mirza Ghalib"
+  century: 19
+  note: "Sample entry: replace this with why the line stays with you."
+
+- original: "الوقتُ كالسيف، إن لم تقطعه قطعك"
+  transliteration: "al-waqtu ka-s-sayf, in lam taqṭaʿhu qaṭaʿak"
+  translation: "Time is like a sword: if you do not cut it, it cuts you."
+  language: Arabic
+  kind: proverb
+  note: "Sample entry: replace this with why the saying stays with you."

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% from "macros.html" import writing_item, manuscript_card, poem_block %}
+
+{% block content %}
+<section class="hero">
+  <h1>{{ site.title }}</h1>
+  <p class="lede">{{ site.intro }}</p>
+</section>
+
+{# The sections, each with how many entries it holds. #}
+<section>
+  <h2 class="section-label">In the library</h2>
+  <ul class="section-grid">
+    {% for key in ["writing", "manuscripts", "scripts", "images", "poetry", "books", "projects"] %}
+    {% set sec = site.sections[key] %}
+    <li>
+      <a href="{{ ('/' ~ key ~ '/') | link }}">
+        <span class="section-name">{{ sec.title }}</span>
+        <span class="section-count">{{ counts[key] }}</span>
+        <span class="section-blurb">{{ sec.blurb }}</span>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+
+{% if featured %}
+<section>
+  <h2 class="section-label">A line I return to</h2>
+  {{ poem_block(featured) }}
+</section>
+{% endif %}
+
+<section>
+  <h2 class="section-label">Recent writing</h2>
+  {% if recent %}
+  <ul class="entry-list">
+    {% for entry in recent %}{{ writing_item(entry, show_kind=true) }}{% endfor %}
+  </ul>
+  <p><a class="more" href="{{ '/writing/' | link }}">All writing</a></p>
+  {% else %}
+  <p class="empty">Nothing published yet.</p>
+  {% endif %}
+</section>
+
+{% if manuscripts %}
+<section>
+  <h2 class="section-label">From the collection</h2>
+  <ul class="card-grid">
+    {% for ms in manuscripts %}{{ manuscript_card(ms) }}{% endfor %}
+  </ul>
+  <p><a class="more" href="{{ '/manuscripts/' | link }}">All manuscripts</a></p>
+</section>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% from "macros.html" import manuscript_card %}
+
+{% block title %}{{ script.name }} | {{ site.title }}{% endblock %}
+{% block description %}{{ script.summary }}{% endblock %}
+
+{% block content %}
+<article>
+  <header class="article-head script-head">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="{{ '/scripts/' | link }}">Scripts</a></nav>
+    <p class="script-name-ar large" lang="{{ script.name_lang or 'ar' }}" dir="rtl">{{ script.name_ar }}</p>
+    <h1>{{ script.name }}</h1>
+    <p class="meta">
+      <span>{{ script.period }}</span>{% if script.region %}<span>{{ script.region }}</span>{% endif %}
+    </p>
+    <p class="lede">{{ script.summary }}</p>
+  </header>
+
+  {% if script.features %}
+  <section>
+    <h2 class="section-label">How to recognise it</h2>
+    <ul class="features">
+      {% for feature in script.features %}<li>{{ feature }}</li>{% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  {% if script.description %}
+  <section class="prose">
+    {{ script.html }}
+  </section>
+  {% endif %}
+
+  <section>
+    <h2 class="section-label">In the collection</h2>
+    {% if script.manuscripts %}
+    <ul class="card-grid">
+      {% for ms in script.manuscripts %}{{ manuscript_card(ms) }}{% endfor %}
+    </ul>
+    {% else %}
+    <p class="empty">No manuscripts in this script yet.</p>
+    {% endif %}
+  </section>
+
+  <p class="back"><a href="{{ '/scripts/' | link }}">All scripts</a></p>
+</article>
+{% endblock %}

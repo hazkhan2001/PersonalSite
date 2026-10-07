@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Projects | {{ site.title }}{% endblock %}
+
+{% block content %}
+<header class="page-head">
+  <h1>{{ site.sections.projects.title }}</h1>
+  <p class="lede">{{ site.sections.projects.intro }}</p>
+</header>
+
+<ul class="project-list">
+  {% for project in projects %}
+  <li class="project">
+    <div class="project-head">
+      <h2>{{ project.name }}</h2>
+      <p class="meta">
+        {% if project.status %}<span class="status">{{ project.status }}</span>{% endif %}
+        {% if project.years %}<span>{{ project.years }}</span>{% endif %}
+      </p>
+    </div>
+    <p>{{ project.summary }}</p>
+    {% if project.description %}<div class="prose">{{ project.html }}</div>{% endif %}
+    {% if project.tags %}
+    <p class="tags">{% for tag in project.tags %}<span class="tag">{{ tag }}</span>{% endfor %}</p>
+    {% endif %}
+    {% if project.links %}
+    <p class="links">
+      {% for item in project.links %}<a class="more" href="{{ item.url }}">{{ item.label }}</a>{% endfor %}
+    </p>
+    {% endif %}
+  </li>
+  {% else %}
+  <li class="empty">No projects listed yet.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

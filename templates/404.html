@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Page not found | {{ site.title }}{% endblock %}
+
+{% block content %}
+<header class="page-head">
+  <h1>This page isn't on the shelf</h1>
+  <p class="lede">It may have moved, or the address may have a typo.</p>
+</header>
+<p><a class="more" href="{{ '/' | link }}">Back to the library</a></p>
+{% endblock %}

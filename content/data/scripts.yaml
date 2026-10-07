@@ -1,0 +1,166 @@
+# scripts.yaml: the major hands of the Arabic script.
+# The Scripts page sorts these by `from_century`.
+#
+# Fields:
+#   id             required. Short name used in links, and in manuscripts.yaml
+#   name           required
+#   summary        required. One or two sentences for the overview
+#   name_ar        the name in Arabic script
+#   name_lang      language of name_ar: ar (default) or fa
+#   period         free text, e.g. "8th–10th century"
+#   from_century   a number, for ordering
+#   region         where it was used
+#   features       a list of "how to recognise it" points
+#   description    longer text in Markdown
+#
+# A starter set to rewrite in your own words and add to.
+
+- id: hijazi
+  name: "Hijazi"
+  name_ar: "حجازي"
+  period: "7th to early 8th century"
+  from_century: 7
+  region: "The Hijaz (Mecca and Medina)"
+  summary: >
+    The earliest hand used for writing the Qur'an: upright strokes that lean
+    to the right, sparse dotting, and pages taller than they are wide.
+  features:
+    - Tall letters such as alif lean to the right, which is why it is also called ma'il ("slanting")
+    - Few dots to tell similar letters apart, and no vowel signs
+    - Uneven line spacing and letter sizes, more a scribe's hand than a formal script
+    - Pages in portrait (vertical) format
+  description: |
+    Hijazi is the name scholars give to the scripts of the earliest Qur'an
+    manuscripts, copied in the first century of Islam. It takes its name from
+    the region where the Qur'an was first written down.
+
+    These manuscripts were written as aids to a text that was mostly memorised
+    and recited, which helps explain how little they mark: the reader was
+    expected to know the words already.
+
+- id: kufic
+  name: "Kufic"
+  name_ar: "كوفي"
+  period: "Late 7th to 10th century for Qur'ans; centuries longer in architecture"
+  from_century: 7
+  region: "Across the early Islamic world, from Iraq and Syria to North Africa"
+  summary: >
+    An angular, monumental script with a strong horizontal baseline, used for
+    the great Qur'ans of the Umayyad and Abbasid periods.
+  features:
+    - Angular, geometric letters on a firm horizontal baseline
+    - Horizontal strokes often stretched to fill the line (mashq)
+    - Qur'ans in landscape (horizontal) format, often only a few lines to a page
+    - Vowels often marked with red dots rather than the strokes used later
+  description: |
+    The name comes from the city of Kufa in Iraq, though the connection to the
+    city is traditional rather than proven. Many specialists now prefer
+    "early Abbasid scripts" for the Qur'anic hands, keeping "Kufic" as the
+    familiar umbrella term.
+
+    Kufic was slow to write and hard to read at small sizes, which is part of
+    why rounded scripts replaced it for copying books. It never disappeared,
+    though: it lived on in inscriptions, coins, and decoration for centuries.
+
+- id: naskh
+  name: "Naskh"
+  name_ar: "نسخ"
+  period: "10th century to the present"
+  from_century: 10
+  region: "Everywhere the Arabic script is used"
+  summary: >
+    A rounded, compact, highly legible script that became the standard hand
+    for copying Qur'ans and books, and the basis of most Arabic type today.
+  features:
+    - Rounded letters, small and evenly spaced
+    - Letters drawn to fixed proportions, measured in rhombic dots of the pen
+    - Full vowel marking common in Qur'ans
+    - Clear, regular baseline that reads easily at small sizes
+  description: |
+    Naskh owes its discipline to the system of "proportioned writing"
+    (al-khatt al-mansub) attributed to the Abbasid vizier Ibn Muqla (d. 940),
+    which measured each letter against the alif and the rhombic dot. The
+    calligrapher Ibn al-Bawwab (d. 1022) refined it into the elegant hand
+    later copyists imitated.
+
+    Its legibility made it the everyday script of the manuscript age, and
+    most printed Arabic still follows its shapes.
+
+- id: maghribi
+  name: "Maghribi"
+  name_ar: "مغربي"
+  period: "10th century to the present"
+  from_century: 10
+  region: "North Africa, al-Andalus, and later West Africa"
+  summary: >
+    The script of the Islamic West: round, open letters with deep sweeping
+    tails, and its own way of dotting fa and qaf.
+  features:
+    - Fa takes one dot below and qaf one dot above (in the East, fa has one dot above and qaf two)
+    - Wide, open bowls and long tails sweeping below the line
+    - Vowels and reading marks often added in red, green, blue, or yellow
+    - Developed from Kufic rather than from the eastern rounded hands
+  description: |
+    Maghribi grew up in North Africa and Muslim Spain apart from the
+    proportioned scripts of Baghdad, and kept many of its own habits. It
+    remains in use for the Qur'an in parts of North and West Africa, where
+    regional forms such as Sudani developed from it.
+
+- id: thuluth
+  name: "Thuluth"
+  name_ar: "ثلث"
+  period: "Codified in the 13th century; in use before and long after"
+  from_century: 13
+  region: "The central and eastern Islamic lands, and the Ottoman Empire"
+  summary: >
+    A large, sweeping display script for chapter headings, titles, and
+    monumental inscriptions on mosques and tiles.
+  features:
+    - Large letters with long, curving strokes
+    - Letters stacked and interlaced into compact, dense compositions
+    - Used for headings and inscriptions rather than whole texts
+  description: |
+    Thuluth is one of the "six pens" (al-aqlam al-sitta), the classical set of
+    scripts codified by Yaqut al-Musta'simi (d. 1298), calligrapher at the
+    Abbasid court in Baghdad. Ottoman calligraphers later made it their
+    signature monumental hand.
+
+- id: nastaliq
+  name: "Nasta'liq"
+  name_ar: "نستعلیق"
+  name_lang: fa
+  period: "14th century to the present"
+  from_century: 14
+  region: "Iran, Central Asia, and South Asia"
+  summary: >
+    The flowing "hanging" script of Persian poetry, and still the standard
+    script for writing Urdu.
+  features:
+    - Each word slopes down from upper right to lower left, so lines seem to hang
+    - Long, flat horizontal strokes contrasted with steep diagonals
+    - Little or no vowel marking
+    - The classic hand for Persian poetry and, later, Urdu
+  description: |
+    Its name joins naskh and ta'liq, the two scripts it is said to combine.
+    Tradition credits its creation to Mir 'Ali Tabrizi in the late 14th
+    century. Masters such as Mir 'Ali Haravi in 16th-century Herat and Mir
+    'Imad in Safavid Isfahan set the standard, and it spread with Persian
+    culture to the Mughal court.
+
+- id: diwani
+  name: "Diwani"
+  name_ar: "دیوانی"
+  period: "15th century to the 20th"
+  from_century: 15
+  region: "The Ottoman Empire"
+  summary: >
+    The ornate chancery script of the Ottoman court, used for decrees and
+    official documents.
+  features:
+    - Tightly packed, highly cursive letters that join in unusual ways
+    - Lines that rise toward the end
+    - Dense and hard for outsiders to read, which helped guard against forgery
+  description: |
+    Diwani takes its name from the imperial council (divan) whose documents
+    it was used for. Sultans' decrees (firmans) and diplomas were written in
+    it, often crowned with the sultan's tughra.

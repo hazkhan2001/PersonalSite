@@ -1,0 +1,27 @@
+/* Lapis
+   The palette of the Blue Qur'an: letters of gold on parchment dyed with
+   indigo. A deep lapis page in every lighting, gilt accents, Spectral for
+   reading (light weights for headings) and Hanken Grotesk for the interface. */
+
+@import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Hanken+Grotesk:wght@400;500;600&display=swap");
+
+:root {
+  --paper: #13214a;
+  --surface: #1b2c5c;
+  --ink: #e8e5da;
+  --ink-soft: #a6afc8;
+  --accent: #d8b45c;
+  --accent-ink: #13214a;
+  --rule: #2d3e72;
+
+  --body: "Spectral", Georgia, serif;
+  --display: "Spectral", Georgia, serif;
+  --ui: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --display-weight: 300;
+  --body-size: 1.15rem;
+  --radius: 0;
+}
+
+/* The one bold gesture: the homepage title and each script's name in gold,
+   like the gilt letters of the manuscript. */
+.hero h1, .script-name-ar.large { color: var(--accent); }

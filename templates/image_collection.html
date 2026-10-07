@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% from "macros.html" import image_card, filter_group, filter_status %}
+
+{% block title %}{{ collection.title }} | {{ site.title }}{% endblock %}
+
+{% block content %}
+<header class="page-head">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="{{ '/images/' | link }}">Images</a></nav>
+  <h1>{{ collection.title }}</h1>
+  {% if collection.span %}<p class="meta"><span>{{ collection.span }}</span></p>{% endif %}
+  {% if collection.intro %}<div class="lede">{{ collection.intro_html }}</div>{% endif %}
+</header>
+
+<div data-filter-root>
+  <div class="filters">
+    {{ filter_group("medium", "Medium", medium_options) }}
+  </div>
+  {{ filter_status() }}
+
+  {# Oldest first, so the grid reads as a timeline. #}
+  <ul class="card-grid">
+    {% for image in collection.images %}
+      {{ image_card(image) }}
+    {% else %}
+      <li class="empty">No images in this collection yet.</li>
+    {% endfor %}
+  </ul>
+</div>
+
+<p class="back"><a href="{{ '/images/' | link }}">All collections</a></p>
+{% endblock %}

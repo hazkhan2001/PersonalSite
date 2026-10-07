@@ -1,0 +1,49 @@
+# projects.yaml: one entry per project, shown in this order.
+#
+# Fields:
+#   name, summary   required
+#   status          e.g. "Live", "Prototype live", "In progress", "Planned"
+#   years           e.g. "2026" or "2025–2026"
+#   tags            a list, e.g. [web, Python]
+#   links           a list of { label, url }
+#   description     longer text in Markdown (optional)
+#
+# Drafted from what you've told me; edit the wording to taste.
+
+- name: "Sawt: The Islamic Soundscape Map"
+  status: "Prototype live"
+  years: "2026"
+  summary: >
+    An interactive globe of Islamic modal and devotional music traditions:
+    maqam, dastgah, muqam, Andalusian nawba, qawwali, inshad, and dhikr.
+    Click a regional hub like Fez, Cairo, Konya, or Delhi and listen, with
+    notes on the music and its poetry.
+  tags: [web, music, maps, Python]
+  links:
+    - { label: "Open the prototype", url: "https://hazkhan2001.github.io/sawt/" }
+
+- name: "Sirah MapTap"
+  status: "In design"
+  years: "2026"
+  summary: >
+    A daily map game on the life of the Prophet: place events like Badr,
+    Uhud, and the Hijra on a satellite map of the Hijaz, then see how close
+    you were and read a short account drawn from the classical sources.
+  tags: [web, game, sirah, maps]
+
+- name: "Mecca in the Early Years of Revelation"
+  status: "In progress"
+  years: "2026"
+  summary: >
+    A walkable, first-person reconstruction of seventh-century Mecca: the
+    Ka'ba and the houses of Khadija and Abu Bakr as they may have stood,
+    placed and furnished from hadith and sira sources.
+  tags: [Godot, 3D, history]
+
+- name: "This library"
+  status: "Live"
+  years: "2026"
+  summary: >
+    The site you're reading, built with a small Python static site
+    generator: Markdown and YAML in, HTML out.
+  tags: [web, Python]

@@ -1,0 +1,39 @@
+/* Verdigris
+   Named for the copper-green pigment (zangar) of Persian manuscript
+   painting, famous for slowly eating through the paper it was painted on.
+   A cool grey-green page, green-black ink, and Alegreya: a book typeface
+   drawn with a broad-nib pen, paired with its sans-serif sibling. */
+
+@import url("https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Alegreya+Sans:wght@400;500;700&display=swap");
+
+:root {
+  --paper: #e5e9e2;
+  --surface: #d7ddd3;
+  --ink: #18231e;
+  --ink-soft: #52605a;
+  --accent: #21685a;
+  --accent-ink: #f1f4ef;
+  --rule: #b8c3b8;
+
+  --body: "Alegreya", Georgia, serif;
+  --display: "Alegreya", Georgia, serif;
+  --ui: "Alegreya Sans", "Helvetica Neue", Arial, sans-serif;
+  --display-weight: 500;
+  --body-size: 1.22rem;
+  --radius: 3px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #121a17;
+    --surface: #1b2621;
+    --ink: #d8e1da;
+    --ink-soft: #8d9d95;
+    --accent: #6db4a1;
+    --accent-ink: #0f1714;
+    --rule: #2b3933;
+  }
+}
+
+/* The one bold gesture: a band of verdigris across the top of every page. */
+body { border-top: 6px solid var(--accent); }

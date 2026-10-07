@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+<channel>
+  <title>{{ site.title }}</title>
+  <link>{{ site.site_url }}{{ '/' | link }}</link>
+  <description>{{ site.tagline }}</description>
+  <language>en</language>
+  {% for entry in entries %}
+  <item>
+    <title>{{ entry.title }}</title>
+    <link>{{ site.site_url }}{{ entry.url | link }}</link>
+    <guid>{{ site.site_url }}{{ entry.url | link }}</guid>
+    <pubDate>{{ entry.date | rfc822 }}</pubDate>
+    <category>{{ entry.kind }}</category>
+    <description>{{ entry.summary or '' }}</description>
+  </item>
+  {% endfor %}
+</channel>
+</rss>
